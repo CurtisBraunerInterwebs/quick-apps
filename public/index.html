@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+    <title>Curtis Quick Apps</title>
+    <link rel="stylesheet" href="bootstrap-css/bootstrap.css" />
+    <link rel="stylesheet" href="summernote/summernote.css">
+    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <script type="module" defer src="index.js"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDllRXu0Nmvm_VzH6Zpk4Q7NySX_roRtB0&callback=initMap"></script>
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDllRXu0Nmvm_VzH6Zpk4Q7NySX_roRtB0"></script> -->
+    <script type="module" src="summernote/summernote.js"></script>
+    <script type="module" src="bootstrap-js/bootstrap.bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+    
+  <body>
+    <div class="row" id="appNav">
+      <button class=" col btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#app1" aria-expanded="false" aria-controls="app1">
+        Roll Character
+      </button>
+      <button class="col btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app2" aria-expanded="false" aria-controls="app2">
+        DnD Spells
+      </button>
+      <button class="col btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#app3" aria-expanded="false" aria-controls="app3">
+        Key Logging
+      </button>
+      <button class="col btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#app4" aria-expanded="false" aria-controls="app4">
+        CSV to JSON
+      </button>
+      <button class="col btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app5" aria-expanded="false" aria-controls="app5">
+        Interactive Grid
+      </button>
+      <!-- <button class="col btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app6" aria-expanded="false" aria-controls="app6">
+        Summernote
+      </button> -->
+      <button class="col btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app7" aria-expanded="false" aria-controls="app7">
+        Excel to JSON
+      </button>
+      <button class="col btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app8" aria-expanded="false" aria-controls="app8">
+        Bingo Maker
+      </button>
+      <button class="col btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app9" aria-expanded="false" aria-controls="app9">
+        Google Maps API
+      </button>
+      <button class="col btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app10" aria-expanded="false" aria-controls="app10">
+        Modal
+      </button>
+    </div>
+    <br>
+    <div id="app1" class="container-xl collapse ">
+      <h4 class="title">Roll Character</h4>
+      <div class="appBody container">
+        <button type="button" id="rollStats" class="btn btn-success">Roll Stats</button>
+        <div id="statList" class="row gx-5 gy-4">
+          <div class="col">
+            <div class="statBox card px-0">
+              <h4 class="card-title p-1 text-center "> </h4>
+              <div class="card-body p-1 text-center"> </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="statBox card px-0">
+              <h4 class="card-title p-1 text-center "> </h4>
+              <div class="card-body p-1 text-center"> </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="statBox card px-0">
+              <h4 class="card-title p-1 text-center "> </h4>
+              <div class="card-body p-1 text-center"> </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="statBox card px-0">
+              <h4 class="card-title p-1 text-center "> </h4>
+              <div class="card-body p-1 text-center"> </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="statBox card px-0">
+              <h4 class="card-title p-1 text-center "> </h4>
+              <div class="card-body p-1 text-center"> </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="statBox card px-0">
+              <h4 class="card-title p-1 text-center "> </h4>
+              <div class="card-body p-1 text-center"> </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div id="app2" class="container-xl gy-5 collapse" >
+      <button type="button" id="uploadSpells" disabled class="btn btn-primary">Upload Spells</button>
+      <button type="button" id="showSpells" class="btn btn-success">View Spells</button>
+      <div id="empty" class="container">
+        <ul class="list-group" id="spellList">
+
+        </ul>
+      </div>
+    </div>
+    <div id="app3" class="container collapse ">
+      <h4 class="title">Testing key stroke logging</h4>
+      <button class="btn btn-primary" id="startKeyCheck">Alert Key Press</button>
+      <button class="btn btn-danger" id="stopKeyCheck"> Stop Alert</button>
+    </div>
+    <div id="app4" class="container collapse ">
+      <h4 class="title">CSV to JSON - not working</h4>
+      <button class="btn btn-primary" id="checkConvert">Convert CSV to JSON</button>
+      <input type="text" class="form-control" id="csv">
+      <input type="number" class="form-control" id="hds">
+    </div>
+    <div id="app5" class="container-xl collapse" >
+      <h4 class="title">Interactive Grid</h4>
+      <div class="appBody container">
+        <button id="newGrid" >
+          New Grid
+        </button>
+      <div class="" id="grid">
+
+      </div>
+      </div>
+    </div>
+    <div id="app6" class="container-xl collapse" >
+      <h4 class="title">Summernote test</h4>
+      <div class="appBody container">
+        <div class="" id="testSm">
+          <input type="file">
+          <textarea class="summernote">
+
+          </textarea>
+          <p class="summernote" id="paraSum">
+
+          </p>
+        </div>
+        <div class="" id="testAir">
+          <textarea class="airmode">
+
+          </textarea>
+          <p class="airmode">
+
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="app7" class="container-xl collapse" >
+      <h4 class="title">Summernote test</h4>
+      <div class="appBody container">
+        <div class="" id="testSm">
+          <input type="file" id="jsonTest">
+          <textarea class="border-1" class="form-control" rows=35 cols=120  id="jsonToExcel">
+
+          </textarea>
+          <p id="jsonToExcelP">
+            
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="app8" class="container-xl collapse" >
+      <h4 class="title">Bingo Maker</h4>
+      <div class="container" id="bingoContent">
+        <div class="form-check form-check-inline form-switch">
+          <input class="form-check-input" type="checkbox" id="bingoRandoSwitch">
+          <label class="form-check-label" for="bingoRandoSwitch">Randomized</label>
+        </div>
+        <a class="btn btn-primary" data-bs-toggle="collapse" href="#bingoDataTable" role="button" aria-expanded="false" aria-controls="bingoDataTable">Enter Bingo Data</a>
+        <div class="collapse multi-collapse" id="bingoDataTable">
+          <div class="card card-body">
+            <table class="table table-hover table-bordered" id="bingoTableIn">
+              <tbody>
+                <tr>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td class="text-center">&#9733</td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                </tr>
+                <tr>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                  <td><input type="text" class="bingoIn text-center"></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <button class="btn btn-success" id="loadBingoBoard">Load Board</button>
+        </div>
+      </div>
+      <div class="appBody container d-none" id="bingoGrid">
+        <div class="row" id="bingoOutRow">
+          <div class="col" id="bingoOutCol">
+            <div class="row row-cols-5 bingoRow "> 
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+            </div>
+            <div class="row row-cols-5 bingoRow ">
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+            </div>
+            <div class="row row-cols-5 bingoRow ">
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border" id="middleStar"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+            </div>
+            <div class="row row-cols-5 bingoRow ">
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+            </div>
+            <div class="row row-cols-5 bingoRow ">
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+              <div class="col bingoCol py-5 text-center border"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <button clas="btn btn-primary" id="printBingos">Print Bingo Card</button>
+    </div>
+    <div id="app9" class="container-xl collapse" style="width:100%; height:100%;">
+      <div>
+        <div class="input-group mb-3">
+          <button class="btn btn-secondary" type="button" id="newStartPoint">New Starting Period</button>
+          <input type="text" class="form-control" placeholder="Pin Name" id="newStartName" aria-label="" aria-describedby="button-addon1">
+          <input type="text" class="form-control" placeholder="Lat" id="newStartLat" aria-label="" aria-describedby="button-addon1">
+          <input type="text" class="form-control" placeholder="Long" id="newStartLong" aria-label="" aria-describedby="button-addon1">
+        </div>
+        <div class="input-group mb-3">
+          <button class="btn btn-secondary" type="button" id="newPinBtn">New Pin</button>
+          <input type="text" class="form-control" placeholder="Pin Name" id="newPnTtl" aria-label="" aria-describedby="button-addon1">
+          <input type="text" class="form-control" placeholder="Lat" id="newPinLat" aria-label="" aria-describedby="button-addon1">
+          <input type="text" class="form-control" placeholder="Long" id="newPinLang" aria-label="" aria-describedby="button-addon1">
+        </div>
+      </div>
+      <div id="map" style="clear:both; height:200px;"></div>
+
+      <script>
+      //   function initMap() {
+      //   var newLat = $("#newPinLat").val();
+      //   var newLang = $("#newPinLang").val();
+      //   var pinTtl = $("#newPnTtl").val();
+      //   const myLatLng = { lat: 41.701040, lng: -72.320160 };
+      //   var newPin = { lat: parseFloat(newLat), lng: parseFloat(newLang) };
+        
+      //   var map = new google.maps.Map(document.getElementById('map'), {
+      //     center: {lat: 41.701040, lng: -72.320160},
+      //     zoom: 8
+      //   });
+      //   new google.maps.Marker({
+      //       position: myLatLng,
+      //       map,
+      //       title: "Home",
+      //     });
+
+      //   if(newLat !== "" || newLang !=="") {
+      //   new google.maps.Marker({
+      //       position: newPin,
+      //       map,
+      //       title: pinTtl,
+      //     });
+      //   }
+      // }
+      </script>
+        
+    </div>
+    <div id="app10" class="container-xl collapse">
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+      Launch demo modal
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Insert Bar Locations below
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Pin Name" id="newStartName" aria-label="" aria-describedby="button-addon1">
+                <input type="text" class="form-control" placeholder="Lat" id="newBarLat" aria-label="" aria-describedby="button-addon1">
+                <input type="text" class="form-control" placeholder="Long" id="newBarLong" aria-label="" aria-describedby="button-addon1">
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="saveApp10">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+</body>
+</html>
