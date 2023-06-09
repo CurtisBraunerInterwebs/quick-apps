@@ -9,15 +9,57 @@
     <link rel="stylesheet" href="summernote/summernote.css">
     <!-- <link rel="stylesheet" href="styles.css" /> -->
     <script type="module" defer src="index.js"></script>
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDllRXu0Nmvm_VzH6Zpk4Q7NySX_roRtB0&callback=initMap"></script>
+    <!-- <script>
+      function initMap(locs) {
+          var newLat = $("#newBarLat").val();
+          var newLang = $("#newBarLong").val();
+          var pinTtl = $("#newStartName").val();
+          const myLatLng = { lat: 40.78147982626637, lng: -73.956249648968 };
+          var newPin = { lat: parseFloat(newLat), lng: parseFloat(newLang) };
+          
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: 40.7781522, lng: -73.9479239},
+            zoom: 8
+          });
+          new google.maps.Marker({
+              position: myLatLng,
+              map,
+              title: "Dylan's Appt",
+            });
+
+          if(newLat !== "" || newLang !=="") {
+          new google.maps.Marker({
+              position: newPin,
+              map,
+              title: pinTtl,
+            });
+          }
+
+          if(locs !== undefined) {
+              for (let i= 0; i<locs.length; i++) {
+                  var loc = locs[i];
+                  console.log(loc);
+                  var newLoc = { lat: parseFloat(loc.lat), lng: parseFloat(loc.long)}
+                  new google.maps.Marker({
+                      position: newLoc,
+                      map,
+                      title: loc.name,
+                    });
+                    console.log('adding '+ loc.name)
+                  }
+          }
+      }
+    </script> -->
+    <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDllRXu0Nmvm_VzH6Zpk4Q7NySX_roRtB0&callback=initMap"></script> -->
     <!-- <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDllRXu0Nmvm_VzH6Zpk4Q7NySX_roRtB0"></script> -->
     <script type="module" src="summernote/summernote.js"></script>
     <script type="module" src="bootstrap-js/bootstrap.bundle.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+    <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     
   <body>
-    <div class="row" id="appNav">
+    <div class="row mb-3" id="appNav">
       <button class=" col btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#app1" aria-expanded="false" aria-controls="app1">
         Roll Character
       </button>
@@ -47,6 +89,9 @@
       </button>
       <button class="col btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app10" aria-expanded="false" aria-controls="app10">
         Modal
+      </button>
+      <button class="col btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app11" aria-expanded="false" aria-controls="app11">
+        QR Code Generator
       </button>
     </div>
     <br>
@@ -334,5 +379,26 @@
         </div>
       </div>
     </div>
+    <div id="app11" class="container-xl collapse">
+      <form>
+
+        <div class="form-floating mb-3">
+          <input type="text" class="form-control" id="qrCodeData">
+          <label for="qrCodeData">Insert here for QR Code</label>
+        </div>
+        <!-- <div class="form-floating mb-3">
+          <input type="number" class="form-control" id="qrWidth" >
+          <label for="qrWidth" id="qrWidthLbl">128</label>
+        </div>
+        <div class="form-floating mb-3">
+          <input type="number" class="form-control" id="qrHeight">
+          <label for="qrHeight" id="qrHeightLbl">128</label>
+        </div> -->
+        <button id="loadQR">Load QR Code</button>
+      </form>
+
+      <div id="qrcode"></div>
+    </div>
+
 </body>
 </html>

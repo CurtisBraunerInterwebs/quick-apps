@@ -17,40 +17,37 @@ $(document).ready(function() {
     init();
 });
 
-function initMap() {
-    var newLat = $("#newPinLat").val();
-    var newLang = $("#newPinLang").val();
-    var pinTtl = $("#newPnTtl").val();
-    const myLatLng = { lat: 41.701040, lng: -72.320160 };
-    var newPin = { lat: parseFloat(newLat), lng: parseFloat(newLang) };
+// function initMap() {
+//     var newLat = $("#newPinLat").val();
+//     var newLang = $("#newPinLang").val();
+//     var pinTtl = $("#newPnTtl").val();
+//     const myLatLng = { lat: 41.701040, lng: -72.320160 };
+//     var newPin = { lat: parseFloat(newLat), lng: parseFloat(newLang) };
     
-    var map = new google.maps.Map(document.getElementById('map'), {
-      center: {lat: 41.701040, lng: -72.320160},
-      zoom: 8
-    });
-    new google.maps.Marker({
-        position: myLatLng,
-        map,
-        title: "Australia",
-      });
+//     var map = new google.maps.Map(document.getElementById('map'), {
+//       center: {lat: 41.701040, lng: -72.320160},
+//       zoom: 8
+//     });
+//     new google.maps.Marker({
+//         position: myLatLng,
+//         map,
+//         title: "Australia",
+//       });
 
-    if(newLat !== "" || newLang !=="") {
-    new google.maps.Marker({
-        position: newPin,
-        map,
-        title: pinTtl,
-      });
-    }
-  }
+//     if(newLat !== "" || newLang !=="") {
+//     new google.maps.Marker({
+//         position: newPin,
+//         map,
+//         title: pinTtl,
+//       });
+//     }
+//   }
 
 const init = () => {
     const app = initializeApp(firebaseConfig);
     const db = getDatabase(app);
 
-    $("#rollStats").on('click', function() {
-        rollStats();
-    });
-
+    //Map Test
     function setMapStart (lat, lng) {
         set(ref(db,'/map/start'),{
             'lat': lat,
@@ -60,13 +57,11 @@ const init = () => {
 
     var startMap;
 
-      
-
     $("#newPinBtn").on('click',function(){
         initMap();
       });
 
-      initMap();
+      //initMap();
 
     // function initMap() {
     //     var newLat = $("#newPinLat").val();
@@ -110,7 +105,9 @@ const init = () => {
         });
     }
 
-    getMapStart();  
+    //getMapStart();  
+
+     //Roll Stats
 
     const rollDie = (sides, count, reroll, type, stat=false) => {
         var rolls = [];
@@ -140,6 +137,10 @@ const init = () => {
         return rolls;
     }
 
+    $("#rollStats").on('click', function() {
+        rollStats();
+    });
+
     const rollStats = () => {
         var rolls = [];
         var boxes = $("#statList .card-body").toArray();
@@ -164,13 +165,9 @@ const init = () => {
     }
     document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
 
-    $("#uploadSpells").on('click',function() {
-        spellList("upload");
-    } );
+    
 
-    $("#showSpells").on('click', function() {
-        spellList("show")
-    });
+    //Key Press
 
     $("#startKeyCheck").on('click',function() {
         $(document).keydown(function (event) {
@@ -228,6 +225,8 @@ const init = () => {
         $(this).toggleClass('btn-success');
     });
 
+    //Interactive Grid
+
     $('#newGrid').on('click',function(){
         newRow($('#grid'),'h-50 ','row1');
         $(this).hide();
@@ -269,6 +268,27 @@ const init = () => {
         $(parent).append(col);
     }
 
+    $('#loadQR').on('click',function(){
+        var qrData = $('#qrCodeData').val();
+        generateQRCode(qrData, 'qrcode');
+    });
+
+    function generateQRCode(data, containerId) {
+        var container = document.getElementById(containerId);
+        container.innerHTML = ""; // Clear any existing content
+        var wide, high;
+        console.log(data);
+
+        var qrcode = new QRCode(container, {
+          text: data,
+          width: 128,
+          height: 128,
+        });
+      }
+      
+
+    //Summernote
+
     $('.airmode').summernote({
         airMode:true,
         popover:{
@@ -283,6 +303,35 @@ const init = () => {
     
     $('.summernote').summernote();
 
+    //Bingo Board
+
+    $("#loadBingoBoard").on('click',function(){
+        loadBingo();
+        $("#bingoGrid").toggleClass('d-none');
+    });
+
+    function loadBingo () {
+        var ins = [];
+        var cells = [1,2,3,4,5,6,7,8,9,10,11,12,14,15,16,17,18,19,20,21,22,23,24,25],
+            rands = [],
+            x = cells.length,
+            y = 0;
+        while (x--) {
+            y = Math.floor(Math.random() * (x+1)); rands.push(cells[y]);  cells.splice(y,1);      }
+        //console.log(rands);
+        $(".bingoIn").each(function(){
+            ins.push($(this).val());
+        });    
+        //console.log(ins);
+        for(let i=0; i<rands.length; i++){
+            $(".bingoCol").eq(rands[i]-1).text(ins[i]);
+        }
+
+        $("#middleStar").html("&#9733");
+            
+
+    }
+    
     var ExcelToJSON = function() {
 
         this.parseExcel = function(file) {
@@ -326,34 +375,6 @@ const init = () => {
           reader.readAsBinaryString(file);
         };
       };
-
-    $("#loadBingoBoard").on('click',function(){
-        loadBingo();
-        $("#bingoGrid").toggleClass('d-none');
-    });
-
-    function loadBingo () {
-        var ins = [];
-        var cells = [1,2,3,4,5,6,7,8,9,10,11,12,14,15,16,17,18,19,20,21,22,23,24,25],
-            rands = [],
-            x = cells.length,
-            y = 0;
-        while (x--) {
-            y = Math.floor(Math.random() * (x+1)); rands.push(cells[y]);  cells.splice(y,1);      }
-        //console.log(rands);
-        $(".bingoIn").each(function(){
-            ins.push($(this).val());
-        });    
-        //console.log(ins);
-        for(let i=0; i<rands.length; i++){
-            $(".bingoCol").eq(rands[i]-1).text(ins[i]);
-        }
-
-        $("#middleStar").html("&#9733");
-            
-
-    }
-    
     function handleFileSelect(evt) {
     
         var files = evt.target.files; // FileList object
@@ -377,7 +398,15 @@ const init = () => {
     
     document.getElementById('jsonTest').addEventListener('change', handleFileSelect, false);
 
-    
+    //Spells
+
+    $("#uploadSpells").on('click',function() {
+        spellList("upload");
+    } );
+
+    $("#showSpells").on('click', function() {
+        spellList("show")
+    });
     function spellList (action) {
         switch (action) {
             case "upload": 
