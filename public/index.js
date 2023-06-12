@@ -275,7 +275,7 @@ const init = () => {
 
     function generateQRCode(data, containerId) {
         var container = document.getElementById(containerId);
-        //container.innerHTML = ""; // Clear any existing content
+        container.innerHTML = ""; // Clear any existing content
         var wide, high;
         console.log(data);
 
@@ -284,8 +284,8 @@ const init = () => {
           width: 128,
           height: 128,
         });
-
-        return qrcode;
+        console.log(qrcode);
+        return false;
       }
       
 
