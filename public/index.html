@@ -7,7 +7,7 @@
     <title>Curtis Quick Apps</title>
     <link rel="stylesheet" href="bootstrap-css/bootstrap.css" />
     <link rel="stylesheet" href="summernote/summernote.css">
-    <!-- <link rel="stylesheet" href="styles.css" /> -->
+    <link rel="stylesheet" href="style.css" />
     <script type="module" defer src="index.js"></script>
     <!-- <script>
       function initMap(locs) {
@@ -93,8 +93,11 @@
       <button class="col gx-3 mx-1 btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app11" aria-expanded="false" aria-controls="app11">
         QR/Barcode Code Generator & Scanner
       </button>
-      <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app12" aria-expanded="false" aria-controls="app12">
+      <button class="col gx-3 mx-1 btn btn-warning" type="button" disabled data-bs-toggle="collapse" data-bs-target="#app12" aria-expanded="false" aria-controls="app12">
         Scroll to View
+      </button>
+      <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app13" aria-expanded="false" aria-controls="app13">
+        Card Carousal
       </button>
     </div>
     <br>
@@ -402,7 +405,88 @@
 
       <div id="qrcode"></div>
     </div>
-
+    <div id="app12" class="container-xl collapse">
+      
+    </div>
+    <div id="app13" class="container-xl collapse">
+      <div class="container text-center my-3">
+        <h2 class="font-weight-light">Bootstrap Multi Slide Carousel</h2>
+        <div class="row mx-auto my-auto justify-content-center">
+            <div id="recipeCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner" role="listbox">
+                    <div class="carousel-item active">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="//via.placeholder.com/500x400/31f?text=1" class="img-fluid">
+                                </div>
+                                <div class="card-img-overlay">Slide 1</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="//via.placeholder.com/500x400/e66?text=2" class="img-fluid">
+                                </div>
+                                <div class="card-img-overlay">Slide 2</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="//via.placeholder.com/500x400/7d2?text=3" class="img-fluid">
+                                </div>
+                                <div class="card-img-overlay">Slide 3</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="//via.placeholder.com/500x400?text=4" class="img-fluid">
+                                </div>
+                                <div class="card-img-overlay">Slide 4</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="//via.placeholder.com/500x400/aba?text=5" class="img-fluid">
+                                </div>
+                                <div class="card-img-overlay">Slide 5</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="carousel-item">
+                        <div class="col-md-3">
+                            <div class="card">
+                                <div class="card-img">
+                                    <img src="//via.placeholder.com/500x400/fc0?text=6" class="img-fluid">
+                                </div>
+                                <div class="card-img-overlay">Slide 6</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <a class="carousel-control-prev bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                </a>
+                <a class="carousel-control-next bg-transparent w-aut" href="#recipeCarousel" role="button" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>
+        <h5 class="mt-2 fw-light">advances one slide at a time</h5>
+    </div>
+    
+    </div>
 
 </body>
 </html>
