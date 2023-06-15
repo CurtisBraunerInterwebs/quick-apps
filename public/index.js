@@ -105,9 +105,19 @@ const init = () => {
         });
     }
 
-    //getMapStart();  
+    //getMapStart();
+    
+    
 
-     //Roll Stats
+    $('.newAction').on('click',functon() {
+        
+    });
+
+    const roller = (par) => {
+        
+    }
+
+    //Roll Stats
 
     const rollDie = (sides, count, reroll, type, stat=false) => {
         var rolls = [];

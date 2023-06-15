@@ -94,11 +94,14 @@
       <button class="col gx-3 mx-1 btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app11" aria-expanded="false" aria-controls="app11">
         QR/Barcode Code Generator & Scanner
       </button>
-      <button class="col gx-3 mx-1 btn btn-warning" type="button"  data-bs-toggle="collapse" data-bs-target="#app12" aria-expanded="false" aria-controls="app12">
+      <button class="col gx-3 mx-1 btn btn-success" type="button"  data-bs-toggle="collapse" data-bs-target="#app12" aria-expanded="false" aria-controls="app12">
         Scroll to View
       </button>
       <button class="col gx-3 mx-1 btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app13" aria-expanded="false" aria-controls="app13">
         Card Carousal
+      </button>
+      <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app14" aria-expanded="false" aria-controls="app14">
+        Dice Roller
       </button>
     </div>
     <br>
@@ -659,6 +662,42 @@
         </div>
     </div>
     
+    </div>
+    <div id="app14" class="container-xl collapse">
+      
+      <div class="action" id="action1">
+        <h1 class="actionName"></h1>
+        <div class="roller">
+          <input type="number" class="dieNum">d<input type="number" class="dieType">
+        </div>
+        <button class="btn btn-primary newRoller">
+          New Roller
+        </button>
+      </div>
+      <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">New Action</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              Insert Bar Locations below
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Action Name" id="Action Name" aria-label="" aria-describedby="button-addon1">
+                <!-- <input type="text" class="form-control" placeholder="Lat" id="newBarLat" aria-label="" aria-describedby="button-addon1">
+                <input type="text" class="form-control" placeholder="Long" id="newBarLong" aria-label="" aria-describedby="button-addon1"> -->
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary" id="setAction">Set Action</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
     </div>
 
 </body>
