@@ -304,7 +304,61 @@ const init = () => {
             el.appendChild(cloneChild.children[0])
             next = next.nextElementSibling
         }
-    })
+    });
+
+    //Scroll to View
+
+    function inView (elem, diff=0, visibility=false) {
+        var top = elem.offset().top;
+        //console.log('Top:'+top);
+        var viewTop = $(window).scrollTop();
+        //console.log('Viewtop:'+ viewTop);
+        var viewBottom = viewTop + $(window).height();
+        //console.log('View Bottom:'+ viewBottom);
+        if (top < viewBottom - diff ) {
+            //console.log(top-diff);
+            return true;
+            
+        }
+        else if (top > viewBottom - diff ){
+            return false;
+        }
+    }
+    
+    
+    $('#app12').on('show.bs.collapse', function(){
+        $('body').css('overflow', 'hidden');
+        $('.scroll').css('visibility', 'hidden');
+        $('#eman').children().css('visibility', 'visible');
+        
+        //console.log('showing emanicipation');
+
+        $('.scroll').each(function(){
+            var height = $(this).offset().top;
+            
+        });
+        
+        $(document).scroll(function(){
+            $('.scroll').each(function(){
+                //console.log('scrolling');
+                var height = $(this).scrollTop();
+                var q = $(this).offset();
+                var pos = $(this).position();
+                $(this).find('>:first-child').text(height + " Offset Top:"+ q.top + " Position Top:" + pos.top);
+                if(inView($(this), 50) == true) {
+                    $(this).css({visibility: 'visible', opacity: 1.0});//animate({opacity:1.0}, 200);
+                } else if (inView($(this), 50) == false) {
+                    // $(this).animate({opacity:0.0}, 200, function() {
+                    //     $(this).css("visibility","hidden");
+                    // }); 
+                    $(this).css("visibility","hidden");
+                
+                }
+            });
+            
+        
+        });
+    });
 
 
     //Summernote
