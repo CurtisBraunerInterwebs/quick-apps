@@ -107,13 +107,13 @@ const init = () => {
 
     //getMapStart();
     
-    
+    //Dice Roller
 
     $('.newAction').on('click',functon() {
         
     });
 
-    const roller = (par) => {
+    const roller = (parent) => {
         
     }
 
