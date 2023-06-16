@@ -109,17 +109,76 @@ const init = () => {
     
     //Dice Roller
 
-    $('.newAction').on('click',functon() {
+    $('.newAction').on('click',function(){
+        console.log("newAction");
         
+        $("#actionNameSet").val("");
+        $("#actionModal").modal("toggle");
     });
 
-    const roller = (parent) => {
+    $('.setAction').on('click',function(){
+        let actName = $("#actionNameSet").val();
         
+        newAction(actName);
+        $("#actionModal").modal("toggle");
+    });
+
+    $('.roll').on('click',function(){
+        let count = $(this).siblings(".dieNum").eq(0).val();
+        let sides = $(this).siblings(".dieType").eq(0).val();
+        let modifier = $(this).siblings(".modifier").eq(0).val();
+        let rolls = rollDie(sides, count,0,"norm",false) + modifier;
+        let result = rolls[rolls.length-1]; //+ modifier;
+        $(this).siblings(".result").eq(0).text(result);
+    });
+
+    function roller(parent) {
+        console.log("New Roller");
+        let rollerDiv = $("<div class=\"roller input-group\">"); 
+        let newRoll = parent.children('.newRoller').eq(0);
+        rollerDiv.insertBefore(newRoll);
+        //parent.append(rollerDiv);
+        let dieNum = $("<input type=\"number\" class=\"dieNum form-control\">"); 
+        rollerDiv.append(dieNum);
+        let d = $("<span class=\"input-group-text\"> </span>"); 
+        d.text("d")
+        rollerDiv.append(d);
+        let dieType = $("<input type=\"number\" class=\"dieType form-control\">"); 
+        rollerDiv.append(dieType);
+        let plus = $("<span class=\"input-group-text\">  </span>"); 
+        plus.text("+");
+        rollerDiv.append(plus);
+        let mod = $("<input type=\"number\" class=\"modifier form-control\">"); 
+        rollerDiv.append(mod);
+        let rollBtn = $("button class=\"btn btn-success roll\">Roll</button>"); 
+        rollerDiv.append(rollBtn);
+        let result = $("<div class=\"result b-1\">  </div>"); 
+        rollerDiv.append(result);
     }
+
+    $(".newRoller").on('click',function(){
+        var parent = $(this).parent();
+        roller(parent);
+    });
+
+    function newAction(actName) {
+        console.log("New Action named:"+ actName);
+        var action = $("<div class=\"action\" ></div>");
+        var actionName = $("<h1 class=\"actionName\"></h1>");
+        action.append(actionName);
+        actionName.text(actName);
+        roller(action);
+        var newRollerBtn = $("<button class=\"btn btn-primary newRoller\">  </button>");
+        newRollerBtn.html("Roll");
+        action.append(newRollerBtn);
+        $("#actionHold").append(action);
+    }
+
+
 
     //Roll Stats
 
-    const rollDie = (sides, count, reroll, type, stat=false) => {
+    const rollDie = (sides, count, reroll=0, type, stat=false) => {
         var rolls = [];
         var roll;
         var total = 0;
