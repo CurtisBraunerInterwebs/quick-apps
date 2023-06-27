@@ -123,37 +123,46 @@ const init = () => {
         $("#actionModal").modal("toggle");
     });
 
-    $('.roll').on('click',function(){
-        let count = $(this).siblings(".dieNum").eq(0).val();
-        let sides = $(this).siblings(".dieType").eq(0).val();
-        let modifier = $(this).siblings(".modifier").eq(0).val();
-        let rolls = rollDie(sides, count,0,"norm",false) + modifier;
-        let result = rolls[rolls.length-1]; //+ modifier;
-        $(this).siblings(".result").eq(0).text(result);
-    });
+    function setRoll() {
+        $('.roll').on('click',function(){
+            let count = $(this).siblings(".dieNum").eq(0).val();
+            let sides = $(this).siblings(".dieType").eq(0).val();
+            let modifier = parseInt($(this).siblings(".modifier").eq(0).val());
+            let rolls = rollDie(sides, count,0,"norm",false);
+            let result = parseInt(rolls[rolls.length-1]); 
+            console.log(result);
+            result = result + modifier; console.log(result);
+            $(this).siblings(".result").eq(0).text(result);
+        });
+    }
+
+    setRoll();
+        
 
     function roller(parent) {
         console.log("New Roller");
-        let rollerDiv = $("<div class=\"roller input-group\">"); 
+        let rollerDiv = $("<div class=\"roller input-group row gy-3\">"); 
         let newRoll = parent.children('.newRoller').eq(0);
         rollerDiv.insertBefore(newRoll);
         //parent.append(rollerDiv);
-        let dieNum = $("<input type=\"number\" class=\"dieNum form-control\">"); 
+        let dieNum = $("<input type=\"number\" class=\"dieNum form-control col-2\">"); 
         rollerDiv.append(dieNum);
-        let d = $("<span class=\"input-group-text\"> </span>"); 
+        let d = $("<span class=\"input-group-text col\"> </span>"); 
         d.text("d")
         rollerDiv.append(d);
-        let dieType = $("<input type=\"number\" class=\"dieType form-control\">"); 
+        let dieType = $("<input type=\"number\" class=\"dieType form-control col-2\">"); 
         rollerDiv.append(dieType);
-        let plus = $("<span class=\"input-group-text\">  </span>"); 
+        let plus = $("<span class=\"input-group-text col\">  </span>"); 
         plus.text("+");
         rollerDiv.append(plus);
-        let mod = $("<input type=\"number\" class=\"modifier form-control\">"); 
+        let mod = $("<input type=\"number\" class=\"modifier form-control col-2\">"); 
         rollerDiv.append(mod);
-        let rollBtn = $("button class=\"btn btn-success roll\">Roll</button>"); 
+        let rollBtn = $("<button class=\"btn btn-success roll col\"></button>"); 
+        rollBtn.html("Roll");
         rollerDiv.append(rollBtn);
-        let result = $("<div class=\"result b-1\">  </div>"); 
+        let result = $("<div class=\"result b-1 mx-5 col-3\">  </div>"); 
         rollerDiv.append(result);
+        setRoll();
     }
 
     $(".newRoller").on('click',function(){
