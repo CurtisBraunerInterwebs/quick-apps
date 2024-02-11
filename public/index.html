@@ -58,54 +58,101 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
+    <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
     
   <body>
     <div class="row mb-3" id="appNav">
-      <button class="col gx-3 mx-1 btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#app1" aria-expanded="false" aria-controls="app1">
+      <nav class="navbar navbar-expand-lg">
+      <ul class="navbar-nav">
+
+      
+       <li class="nav-item">
+        <button class="col gx-3 mx-1 btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#app1" aria-expanded="false" aria-controls="app1">
         Roll Character
-      </button>
-      <!-- <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app2" aria-expanded="false" aria-controls="app2">
+       </button>
+      </li>
+      <!--  <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app2" aria-expanded="false" aria-controls="app2">
         DnD Spells
-      </button> -->
-      <!-- <button class="col gx-3 mx-1 btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#app3" aria-expanded="false" aria-controls="app3">
+       </button>
+      </li> -->
+      <!--  <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#app3" aria-expanded="false" aria-controls="app3">
         Key Logging
-      </button> -->
-      <!-- <button class="col gx-3 mx-1 btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#app4" aria-expanded="false" aria-controls="app4">
+       </button>
+      </li> -->
+      <!--  <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#app4" aria-expanded="false" aria-controls="app4">
         CSV to JSON
-      </button> -->
-      <!-- <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app5" aria-expanded="false" aria-controls="app5">
+       </button>
+      </li> -->
+      <!--  <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app5" aria-expanded="false" aria-controls="app5">
         Interactive Grid
-      </button> -->
-      <!-- <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app6" aria-expanded="false" aria-controls="app6">
+       </button>
+      </li> -->
+      <!--  <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app6" aria-expanded="false" aria-controls="app6">
         Summernote
-      </button> -->
-      <!-- <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app7" aria-expanded="false" aria-controls="app7">
+       </button>
+      </li> -->
+      <!--  <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app7" aria-expanded="false" aria-controls="app7">
         Excel to JSON
-      </button> -->
-      <button class="col gx-3 mx-1 btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app8" aria-expanded="false" aria-controls="app8">
+       </button>
+       </li> -->
+       <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app8" aria-expanded="false" aria-controls="app8">
         Bingo Maker
-      </button>
-      <!-- <button class="col gx-3 mx-1 btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app9" aria-expanded="false" aria-controls="app9">
+          </button>
+       </li>
+      <!--  <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app9" aria-expanded="false" aria-controls="app9">
         Google Maps API
-      </button> -->
-      <!-- <button class="col gx-3 mx-1 btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app10" aria-expanded="false" aria-controls="app10">
+       </button>
+        </li> -->
+      <!--  <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app10" aria-expanded="false" aria-controls="app10">
         Modal
-      </button> -->
-      <button class="col gx-3 mx-1 btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app11" aria-expanded="false" aria-controls="app11">
+       </button>
+        </li> -->
+       <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app11" aria-expanded="false" aria-controls="app11">
         QR/Barcode Code Generator & Scanner
-      </button>
-      <button class="col gx-3 mx-1 btn btn-success" type="button"  data-bs-toggle="collapse" data-bs-target="#app12" aria-expanded="false" aria-controls="app12">
+       </button>
+       </li>
+       <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-success" type="button"  data-bs-toggle="collapse" data-bs-target="#app12" aria-expanded="false" aria-controls="app12">
         Scroll to View
-      </button>
-      <button class="col gx-3 mx-1 btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app13" aria-expanded="false" aria-controls="app13">
+       </button>
+       </li>
+       <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-success" type="button" data-bs-toggle="collapse" data-bs-target="#app13" aria-expanded="false" aria-controls="app13">
         Card Carousal
-      </button>
-      <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app14" aria-expanded="false" aria-controls="app14">
+       </button>
+      </li>
+      <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app14" aria-expanded="false" aria-controls="app14">
         Dice Roller
-      </button>
-      <button class="col gx-3 mx-1 btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#app15" aria-expanded="false" aria-controls="app15">
+       </button>
+      </li>
+      <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#app15" aria-expanded="false" aria-controls="app15">
         Load Sections
-      </button>
+          </button>
+      </li>
+      <li class="nav-item">
+          <button class="col gx-3 mx-1 btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#app16" aria-expanded="false" aria-controls="app16">
+        Generate Mailto
+          </button>
+      </li>
+      <li>
+        <button class="col gx-3 mx-1 btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#app17" aria-expanded="false" aria-controls="app17">
+          AR/VR
+        </button>
+      </li>
+      </ul>
+      </nav>
     </div>
     <br>
     <div id="app1" class="container-xl collapse ">
@@ -687,9 +734,10 @@
             <input type="number" class="modifier form-control col-2">
             <button class="btn btn-success roll col">Roll</button> 
             <br>
-            <h1 class="result b-1 mx-5 col-3">  
+            <h1 class="result b-1 mx-5 col-3 d-inline">  
 
             </h1>
+            <span class="rolls d-inline"></span>
           </div>
           <button class="btn btn-primary newRoller">
             New Roller
@@ -722,6 +770,47 @@
     </div>
     <div id="app15" class="container-xl collapse">
 
+    </div>
+    <div id="app16" class="container-xl collapse">
+      <h1>Mail To</h1>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" id="lmrSwitch" value="lmr">
+        <label class="form-check-label" for="lmrSwitch">Lenz Most Recognized</label>
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="mailToEmailLabel">@</span>
+        <input type="text" class="form-control" id="mailToEmail" placeholder="email" aria-label="email" aria-describedby="mailToEmailLabel">
+      </div>
+      <div class="input-group mb-3">
+        <span class="input-group-text" id="mailToRecipLabel">Recipient</span>
+        <input type="text" class="form-control" id="lmrFN" placeholder="First Name" aria-label="recip" aria-describedby="mailToRecipLabel">
+        <input type="text" class="form-control" id="lmrLN" placeholder="Last Name" aria-label="recip" aria-describedby="mailToRecipLabel">
+      </div>
+      <select class="form-select" aria-label="Default select example" id="mailToLMRTOD">
+        <option selected>Time of Day</option>
+        <option value="Morning">Morning</option>
+        <option value="Afternoon">Afternoon</option>
+        <option value="Evening">Evening</option>
+      </select>
+      <button class="btn btn-primary" type="button" id="mailToGen">Button</button>
+      <br><br>
+      <div id="mailToDrop">
+        <a id="mailToDropLink">---</a>
+        <p id="mailToDropBody"></p>
+      </div>
+    </div>
+    <div id="app17" class="container-xl collapse">
+      <h1>AR VR Testing</h1>
+      <div class="container h-50 w-50 arField">
+        <a-scene>
+          <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9"></a-box>
+          <a-sphere position="0 1.25 -5" radius="1.25" color="#EF2D5E"></a-sphere>
+          <a-cylinder position="1 0.75 -3" radius="0.5" height="1.5" color="#FFC65D"></a-cylinder>
+          <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+          <a-sky color="#ECECEC"></a-sky>
+        </a-scene>
+
+      </div>
     </div>
 
 </body>

@@ -110,15 +110,15 @@ const init = () => {
     //Dice Roller
 
     $('.newAction').on('click',function(){
-        console.log("newAction");
-        
-        $("#actionNameSet").val("");
+        $("#actionNameSet").val("!!");
         $("#actionModal").modal("toggle");
+        //console.log("newAction");
     });
 
-    $('.setAction').on('click',function(){
+    $('#setAction').on('click',function(){
+        //console.log("making new action")
         let actName = $("#actionNameSet").val();
-        
+        //console.log(actName + ' being');
         newAction(actName);
         $("#actionModal").modal("toggle");
     });
@@ -129,10 +129,13 @@ const init = () => {
             let sides = $(this).siblings(".dieType").eq(0).val();
             let modifier = parseInt($(this).siblings(".modifier").eq(0).val());
             let rolls = rollDie(sides, count,0,"norm",false);
-            let result = parseInt(rolls[rolls.length-1]); 
+            //let result = parseInt(rolls[rolls.length-1]);
+            let result = parseInt(rolls.pop());
+            let eachRoll = rolls;
             console.log(result);
             result = result + modifier; console.log(result);
             $(this).siblings(".result").eq(0).text(result);
+            $(this).siblings(".rolls").eq(0).text(eachRoll);
         });
     }
 
@@ -161,7 +164,9 @@ const init = () => {
         rollBtn.html("Roll");
         rollerDiv.append(rollBtn);
         let result = $("<div class=\"result b-1 mx-5 col-3\">  </div>"); 
+        let rolls = $("<span class=\"rolls col-1\"></span>");
         rollerDiv.append(result);
+        rollerDiv.append(rolls);
         setRoll();
     }
 
@@ -173,6 +178,7 @@ const init = () => {
     function newAction(actName) {
         console.log("New Action named:"+ actName);
         var action = $("<div class=\"action\" ></div>");
+        $("#actionHold").append(action);
         var actionName = $("<h1 class=\"actionName\"></h1>");
         action.append(actionName);
         actionName.text(actName);
@@ -180,7 +186,7 @@ const init = () => {
         var newRollerBtn = $("<button class=\"btn btn-primary newRoller\">  </button>");
         newRollerBtn.html("Roll");
         action.append(newRollerBtn);
-        $("#actionHold").append(action);
+        
     }
 
 
@@ -243,7 +249,24 @@ const init = () => {
     }
     document.cookie.split(";").forEach(function(c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); });
 
-    
+    //Mail To
+
+    $("#mailToGen").on("click", function() {
+        var lunk;
+        var email = $("#mailToEmail").val();
+        var fname = $("#lmrFN").val();
+        var lname = $("#lmrLN").val();
+        var time = $("#mailToLMRTOD").val();
+        var lmr = $("#lmrSwitch").val();
+        //console.log(lmr == "lmr");
+        if(lmr == "lmr") {
+            lunk = "mailto:"+email+"?subject=LENZ%20Most%20Recognized%20-%20"+fname+"%20"+lname //"&body=Good%20"+time+"%2C%0D%0AFor%20next%20month%E2%80%99s%20FLIKONNECT%3A%20LENZ%20Most%20Recognized%2C%20we%20would%20like%20to%20recognize%20and%20feature%20"+fname+".%0D%0A%0D%0AWould%20you%20be%20able%20to%20send%20over%20a%20picture%20of%20"+fname+"%2C%20and%20their%20answer%20to%20the%20question%3A%20How%20do%20you%20display%20your%20personality%20at%20work%3F%0D%0A%0D%0AThank%20you%20very%20much%2C%0D%0ACurtis"
+            var body = "Good "+time+"\n\nFor next month\'s FLIKONNECT: LENZ Most Recognized, we would like to recognize and feature "+fname+".\n\nWould you be able to send over a picture of "+fname+" and their answer to the question? How do you display your personality at work? \n\nThank you very much, \nCurtis"
+            $("#mailToDropLink").attr("href",lunk);
+            $("#mailToDropLink").html("LMR " + fname +" "+lname);
+            $("#mailToDropBody").css({'white-space': 'pre'}).text(body);
+        } 
+    });
 
     //Key Press
 
@@ -261,6 +284,7 @@ const init = () => {
     });
 
     //CSV to JSON
+    
     function csvToJson(csv, numHds) {
         var adjCSV;
         
