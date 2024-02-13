@@ -12005,13 +12005,38 @@ const init = () => {
     ]
 
     //Drag & Drop
+
+    $("#dragNDropTitle").on("click", function(){
+        $("html").css("overflow", "scroll");
+    });
+
+    //simple start
+
+    $(".dragTest").draggable();
+    $(".dropTest").droppable({
+        activate: function() {
+            $(this).css("background", "#faa523");
+        },
+        drop: function() {
+            $(this).css("background", "#7acef4");
+        }
+    });
     
+    var dropRowHere = false;
+    var dropColNum = 0;
 
     $(".dragOpt").on("click", function(){
         $(this).clone().appendTo("#dragList").draggable({
             helper: "clone",
-            revert: "invalid",
-        }).css("width=400px");   
+            //revert: "invalid",
+            drag: function(){
+                $(this).css({
+                    'width':'10px',
+                    'height':'10px',
+                    'background':'blue'
+                });
+            }
+        })   
     });
 
     $(".close").on("click", function(){
@@ -12021,14 +12046,28 @@ const init = () => {
     $("#dragLength").change(function(){
         console.log("making drag row");
         var length = $(this).val();
-        var dragToRow = $("<div class=\"row dragToRow border\" id=\"dragTo\" style=\"height=100px\"></div>");
-        dragToRow.appendTo("#dragContainer");
-        for (let i=0; i<length; i++) {
-            let dragToCol = $("<div class=\"col dragToCol border \" style=\"height=100px\">|</div>");
-            dragToCol.appendTo(dragToRow);
-            dragToCol.addClass("dropIn");
-            dragToCol.droppable();
+        if(dropRowHere == false) {
+            var dropRow = $("<div class=\"row dropRow border\" id=\"dragTo\" ></div>");
+            dropRow.appendTo("#dragContainer");
+            dropRowHere = true;
+        } else {
+            console.log("dropRow already there");
         }
-        console.log("drag row made");
+        while ( dropColNum<length) {
+            let dragToCol = $("<div class=\"col dropCol border \" style=\"height:100px\"></div>");
+            dragToCol.appendTo(dropRow);
+            dragToCol.addClass("dropIn");
+            dragToCol.droppable({
+                activeClass: "ui-state-highlight",
+                //accept: ".drapOpt",
+                activate: function( event, ui) {
+                    $(this)
+                    .addClass("ui-state-highlight");
+                    console.log("draggable grabbed");
+                }
+            });
+            dropColNum++; 
+        }
+        console.log("drag row made with " + dropColNum + " slots");
     });
 }

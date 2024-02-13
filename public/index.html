@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
-    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+    <script  src="https://code.jquery.com/jquery-3.7.1.js"   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="   crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>
     <title>Curtis Quick Apps</title>
     <link rel="stylesheet" href="bootstrap-css/bootstrap.css" />
     <link rel="stylesheet" href="summernote/summernote.css">
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="style.css" />
     <script type="module" defer src="index.js"></script>
     
@@ -820,7 +820,18 @@
       </div>
     </div>
     <div id="app18" class="container-xl collapse">
-      <h1>Drag & Drop</h1>
+      <h1 id="dragNDropTitle">Drag & Drop</h1>
+
+      <div class="container" id="simpleDragCont">
+
+       <div class="dragTest border border-4" style="width:100px; height:100px">
+        <p>This is a draggable</p>
+       </div>
+       <div class="dropTest border border-4" style="width:200px; height:200px">
+        <p>this is a droppable</p>
+       </div>
+
+      </div>
       <div class="container" id="dragContainer">
         <div class="row dragSelect">
           <div class="col">           
