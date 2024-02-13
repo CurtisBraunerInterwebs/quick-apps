@@ -12004,4 +12004,30 @@ const init = () => {
         }
     ]
 
+    //Drag & Drop
+    
+
+    $(".dragOpt").on("click", function(){
+        $(this).clone().appendTo("#dragList").draggable({
+            helper: "clone",
+            revert: "invalid",
+        });   
+    });
+
+    $(".close").on("click", function(){
+        $(this).parent().remove();
+    });
+
+    $("#dragLength").change(function(){
+        console.log("making drag row");
+        var length = $(this).val();
+        var dragToRow = $("<div class=\"row dragToRow\" id=\"dragTo\"></div>");
+        dragToRow.appendTo("#dragContainer");
+        for (let i=0; i<length; i++) {
+            let dragToCol = $("<div class=\"col dragToCol\"> </div>");
+            dragToCol.appendTo(dragToRow);
+            dragToCol.addClass("dropIn");
+        }
+        console.log("drag row made");
+    });
 }

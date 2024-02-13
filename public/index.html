@@ -4,9 +4,11 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.3/dist/jquery.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
     <title>Curtis Quick Apps</title>
     <link rel="stylesheet" href="bootstrap-css/bootstrap.css" />
     <link rel="stylesheet" href="summernote/summernote.css">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="style.css" />
     <script type="module" defer src="index.js"></script>
     
@@ -136,19 +138,24 @@
         Dice Roller
        </button>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
           <button class="col gx-3 mx-1 btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#app15" aria-expanded="false" aria-controls="app15">
         Load Sections
           </button>
-      </li>
+      </li> -->
       <li class="nav-item">
           <button class="col gx-3 mx-1 btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#app16" aria-expanded="false" aria-controls="app16">
         Generate Mailto
           </button>
       </li>
-      <li>
+      <!-- <li class="nav-item">
         <button class="col gx-3 mx-1 btn btn-danger" type="button" data-bs-toggle="collapse" data-bs-target="#app17" aria-expanded="false" aria-controls="app17">
           AR/VR
+        </button>
+      </li> -->
+      <li class="nav-item">
+        <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app18" aria-expanded="false" aria-controls="app18">
+          drag & drop
         </button>
       </li>
       </ul>
@@ -812,6 +819,30 @@
 
       </div>
     </div>
+    <div id="app18" class="container-xl collapse">
+      <h1>Drag & Drop</h1>
+      <div class="container" id="dragContainer">
+        <div class="row dragSelect">
+          <div class="col">           
+              <input type="number" class="form-control" id="dragLength" placeholder="Length" name="dragLength">
+          </div>
+          <div class="col dragOpt text-center shadow border border-4 ">1</div>
+          <div class="col dragOpt text-center shadow border border-4">2</div>
+          <div class="col dragOpt text-center shadow border border-4">3</div>
+          <div class="col dragOpt text-center shadow border border-4">4</div>
+          <div class="col dragOpt text-center shadow border border-4">5</div>
+          <div class="col dragOpt text-center shadow border border-4">6</div>
+          <div class="col dragOpt text-center shadow border border-4">7</div>
+          <div class="col dragOpt text-center shadow border border-4">8</div>
+          <div class="col dragOpt text-center shadow border border-4">9</div>
+        </div>
+        <div class="row" id="dragList">
+          
+        </div>
+
+      </div>
+    </div>
+
 
 </body>
 </html>
