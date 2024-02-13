@@ -12011,7 +12011,7 @@ const init = () => {
         $(this).clone().appendTo("#dragList").draggable({
             helper: "clone",
             revert: "invalid",
-        });   
+        }).css("width=400px");   
     });
 
     $(".close").on("click", function(){
@@ -12021,12 +12021,13 @@ const init = () => {
     $("#dragLength").change(function(){
         console.log("making drag row");
         var length = $(this).val();
-        var dragToRow = $("<div class=\"row dragToRow\" id=\"dragTo\"></div>");
+        var dragToRow = $("<div class=\"row dragToRow border\" id=\"dragTo\" style=\"height=100px\"></div>");
         dragToRow.appendTo("#dragContainer");
         for (let i=0; i<length; i++) {
-            let dragToCol = $("<div class=\"col dragToCol\"> </div>");
+            let dragToCol = $("<div class=\"col dragToCol border \" style=\"height=100px\">|</div>");
             dragToCol.appendTo(dragToRow);
             dragToCol.addClass("dropIn");
+            dragToCol.droppable();
         }
         console.log("drag row made");
     });
