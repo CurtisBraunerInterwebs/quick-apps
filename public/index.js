@@ -12031,8 +12031,8 @@ const init = () => {
             //revert: "invalid",
             drag: function(){
                 $(this).css({
-                    'width':'10px',
-                    'height':'10px',
+                    'width':'50px',
+                    'height':'50px',
                     'background':'blue'
                 });
             }
