@@ -12012,7 +12012,13 @@ const init = () => {
 
     //simple start
 
-    $(".dragTest").draggable();
+    $(".dragTest").draggable(
+        {
+            //helper: "clone",
+            revert: "invalid",
+            appendTo: $("#dropTest")
+        }
+    );
     $(".dropTest").droppable({
         activate: function() {
             $(this).css("background", "#faa523");
@@ -12025,10 +12031,13 @@ const init = () => {
     var dropRowHere = false;
     var dropColNum = 0;
 
-    $(".dragOpt").on("click", function(){
-        $(this).clone().appendTo("#dragList").draggable({
+    //$(".dragOpt").on("click", function(){
+        //let dragItem = $("<div class=\"dragItem text-center shadow border\" > Drag Option </div>")
+        //dragItem.appendTo("#dragList").draggable({
+        $(".dragOpt").draggable({
             helper: "clone",
-            //revert: "invalid",
+            revert: "invalid",
+            appendTo: ".dropCol",
             drag: function(){
                 $(this).css({
                     'width':'50px',
@@ -12036,8 +12045,8 @@ const init = () => {
                     'background':'blue'
                 });
             }
-        })   
-    });
+        });   
+    
 
     $(".close").on("click", function(){
         $(this).parent().remove();

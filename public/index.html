@@ -61,7 +61,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
     <script src="https://cdn.rawgit.com/davidshimjs/qrcodejs/gh-pages/qrcode.min.js"></script>
     <script src="https://aframe.io/releases/1.4.2/aframe.min.js"></script>
-    
+  </head>  
   <body>
     <div class="row mb-3" id="appNav">
       <nav class="navbar navbar-expand-lg">
@@ -156,6 +156,11 @@
       <li class="nav-item">
         <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app18" aria-expanded="false" aria-controls="app18">
           drag & drop
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app19" aria-expanded="false" aria-controls="app19">
+          csv to html table
         </button>
       </li>
       </ul>
@@ -718,8 +723,6 @@
           </div>
         </div>
     </div>
-    
-    </div>
     <div id="app14" class="container-xl collapse">
       <div id="actionHold" class="container">
         <div>
@@ -827,13 +830,13 @@
        <div class="dragTest border border-4" style="width:100px; height:100px">
         <p>This is a draggable</p>
        </div>
-       <div class="dropTest border border-4" style="width:200px; height:200px">
+       <div class="dropTest border border-4" style="width:200px; height:200px" id="dropTest">
         <p>this is a droppable</p>
        </div>
 
       </div>
       <div class="container" id="dragContainer">
-        <div class="row dragSelect">
+        <div class="navbar dragSelect">
           <div class="col">           
               <input type="number" class="form-control" id="dragLength" placeholder="Length" name="dragLength">
           </div>
@@ -846,12 +849,70 @@
           <div class="col dragOpt text-center shadow border border-4">7</div>
           <div class="col dragOpt text-center shadow border border-4">8</div>
           <div class="col dragOpt text-center shadow border border-4">9</div>
+          
         </div>
         <div class="row" id="dragList">
           
         </div>
 
       </div>
+    </div>
+    <div id="app19" class="container-xl collapse">
+      <h1>Upload CSV File</h1>
+        <input type="file" id="csvFileInput" accept=".csv">
+          <button onclick="handleFile()">Upload</button>
+          <div id="tableContainer"></div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      function handleFile() {
+        const fileInput = document.getElementById('csvFileInput');
+        const file = fileInput.files[0];
+        
+        if (!file) {
+            alert('No file selected');
+            return;
+        }
+        
+        if (!file.name.endsWith('.csv')) {
+            alert('Please select a CSV file');
+            return;
+        }
+        
+        const reader = new FileReader();
+        reader.onload = function(event) {
+            const csvData = event.target.result;
+            const rows = csvData.trim().split('\n');
+            const headers = rows[0].split(',');
+            const data = rows.slice(1).map(row => row.split(','));
+
+            const table = $('<table border="1"></table>');
+            const thead = $('<thead></thead>');
+            const tbody = $('<tbody></tbody>');
+
+            const headerRow = $('<tr></tr>');
+            headers.forEach(header => {
+                headerRow.append($('<th></th>').text(header));
+            });
+            thead.append(headerRow);
+
+            data.forEach(row => {
+                const tableRow = $('<tr></tr>');
+                row.forEach(cell => {
+                    tableRow.append($('<td></td>').text(cell));
+                });
+                tbody.append(tableRow);
+            });
+
+            table.append(thead);
+            table.append(tbody);
+
+            $('#tableContainer').empty().append(table);
+        };
+        reader.readAsText(file);
+    }
+    </script>
+
     </div>
 
 
