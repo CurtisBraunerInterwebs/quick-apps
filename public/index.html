@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <script  src="https://code.jquery.com/jquery-3.7.1.js"   integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4="   crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js" integrity="sha256-6XMVI0zB8cRzfZjqKcD01PBsAy3FlDASrlC8SxCpInY=" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/konva@9/konva.min.js"></script>
     <title>Curtis Quick Apps</title>
     <link rel="stylesheet" href="bootstrap-css/bootstrap.css" />
     <link rel="stylesheet" href="summernote/summernote.css">
@@ -161,6 +162,11 @@
       <li class="nav-item">
         <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app19" aria-expanded="false" aria-controls="app19">
           csv to html table
+        </button>
+      </li>
+      <li class="nav-item">
+        <button class="col gx-3 mx-1 btn btn-warning" type="button" data-bs-toggle="collapse" data-bs-target="#app21" aria-expanded="false" aria-controls="app19">
+          konva
         </button>
       </li>
       </ul>
@@ -721,7 +727,8 @@
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
               </a>
           </div>
-        </div>
+          </div>
+      </div>
     </div>
     <div id="app14" class="container-xl collapse">
       <div id="actionHold" class="container">
@@ -912,6 +919,24 @@
         reader.readAsText(file);
     }
     </script>
+
+    </div>
+    <div id="app20" class="container-xl collapse">
+      <h1>Form Fill</h1>
+      <div class="container">
+        <form id="formLetter">
+          <input type="text" id="">
+
+        </form>
+      </div>
+    </div>
+
+    <div id="app21" class="container-xl collapse">
+        <h1>Konva</h1> <br>
+        <input type="number" id="konvaNumPoints" class="form-check-input" style="width: 100px;" ><input type="button" value="Set Points" id="setKonvaPoints" class="button">
+        <div class="container" id="konvaStage">
+          
+        </div>
 
     </div>
 

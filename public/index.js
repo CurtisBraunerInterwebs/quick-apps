@@ -12006,27 +12006,27 @@ const init = () => {
 
     //Drag & Drop
 
-    $("#dragNDropTitle").on("click", function(){
-        $("html").css("overflow", "scroll");
-    });
+    // $("#dragNDropTitle").on("click", function(){
+    //     $("html").css("overflow", "scroll");
+    // });
 
     //simple start
 
-    $(".dragTest").draggable(
-        {
-            //helper: "clone",
-            revert: "invalid",
-            appendTo: $("#dropTest")
-        }
-    );
-    $(".dropTest").droppable({
-        activate: function() {
-            $(this).css("background", "#faa523");
-        },
-        drop: function() {
-            $(this).css("background", "#7acef4");
-        }
-    });
+    // $(".dragTest").draggable(
+    //     {
+    //         //helper: "clone",
+    //         revert: "invalid",
+    //         appendTo: $("#dropTest")
+    //     }
+    // );
+    // $(".dropTest").droppable({
+    //     activate: function() {
+    //         $(this).css("background", "#faa523");
+    //     },
+    //     drop: function() {
+    //         $(this).css("background", "#7acef4");
+    //     }
+    // });
     
     var dropRowHere = false;
     var dropColNum = 0;
@@ -12034,49 +12034,258 @@ const init = () => {
     //$(".dragOpt").on("click", function(){
         //let dragItem = $("<div class=\"dragItem text-center shadow border\" > Drag Option </div>")
         //dragItem.appendTo("#dragList").draggable({
-        $(".dragOpt").draggable({
-            helper: "clone",
-            revert: "invalid",
-            appendTo: ".dropCol",
-            drag: function(){
-                $(this).css({
-                    'width':'50px',
-                    'height':'50px',
-                    'background':'blue'
-                });
-            }
-        });   
+        // $(".dragOpt").draggable({
+        //     helper: "clone",
+        //     revert: "invalid",
+        //     appendTo: ".dropCol",
+        //     drag: function(){
+        //         $(this).css({
+        //             'width':'50px',
+        //             'height':'50px',
+        //             'background':'blue'
+        //         });
+        //     }
+        // });   
     
 
-    $(".close").on("click", function(){
-        $(this).parent().remove();
-    });
+    // $(".close").on("click", function(){
+    //     $(this).parent().remove();
+    // });
 
-    $("#dragLength").change(function(){
-        console.log("making drag row");
-        var length = $(this).val();
-        if(dropRowHere == false) {
-            var dropRow = $("<div class=\"row dropRow border\" id=\"dragTo\" ></div>");
-            dropRow.appendTo("#dragContainer");
-            dropRowHere = true;
+    // $("#dragLength").change(function(){
+    //     console.log("making drag row");
+    //     var length = $(this).val();
+    //     if(dropRowHere == false) {
+    //         var dropRow = $("<div class=\"row dropRow border\" id=\"dragTo\" ></div>");
+    //         dropRow.appendTo("#dragContainer");
+    //         dropRowHere = true;
+    //     } else {
+    //         console.log("dropRow already there");
+    //     }
+    //     while ( dropColNum<length) {
+    //         let dragToCol = $("<div class=\"col dropCol border \" style=\"height:100px\"></div>");
+    //         dragToCol.appendTo(dropRow);
+    //         dragToCol.addClass("dropIn");
+    //         dragToCol.droppable({
+    //             activeClass: "ui-state-highlight",
+    //             //accept: ".drapOpt",
+    //             activate: function( event, ui) {
+    //                 $(this)
+    //                 .addClass("ui-state-highlight");
+    //                 console.log("draggable grabbed");
+    //             }
+    //         });
+    //         dropColNum++; 
+    //     }
+    //     console.log("drag row made with " + dropColNum + " slots");
+    // });
+
+    var dots = [];
+$("#setKonvaPoints").on("click", function (){
+    let dotNum = $("#konvaNumPoints").val();
+    if (dotNum == null) {dotNum = 1}
+    let dotCount = 0;
+    let dotColor;
+    
+    while (dotCount < dotNum) {
+        if(dotCount % 2 == 0) {
+            dotColor = "red";
         } else {
-            console.log("dropRow already there");
+            dotColor = "blue";
         }
-        while ( dropColNum<length) {
-            let dragToCol = $("<div class=\"col dropCol border \" style=\"height:100px\"></div>");
-            dragToCol.appendTo(dropRow);
-            dragToCol.addClass("dropIn");
-            dragToCol.droppable({
-                activeClass: "ui-state-highlight",
-                //accept: ".drapOpt",
-                activate: function( event, ui) {
-                    $(this)
-                    .addClass("ui-state-highlight");
-                    console.log("draggable grabbed");
-                }
-            });
-            dropColNum++; 
-        }
-        console.log("drag row made with " + dropColNum + " slots");
+        let dot = new Konva.Circle({
+            x: 100 + dotCount*100,
+            y: 300 ,
+            radius: 20,
+            fill: dotColor,
+            stroke: "black",
+            strokeWidth: 4,
+            draggable: false,
+        })
+        dots.push(dot);
+        layer1.add(dot);
+        dotCount++;
+    }
+    var line1 = new Konva.Line({
+        points: [20, 300, 100+dotCount*100, 300],
+        stroke: 'black',
+        strokeWidth: '15',
+        draggable: false,
+        
     });
+    layer1.add(line1);
+    layer1.draw();
+});
+    //KONVA
+    // first we need to create a stage
+    var stage = new Konva.Stage({
+    container: 'konvaStage',   // id of container <div>
+    width: 1000,
+    height: 500
+    });
+  
+  //distace function
+  function distance(a, b) {
+    var aPos = a.position();
+    var bPos = b.position();
+    return Math.sqrt(Math.pow(aPos.x - bPos.x, 2) + Math.pow(aPos.y - bPos.y, 2));
+  }
+
+  function closest (items, place){
+    let distLow = 1000;
+    let distNext;
+    let close;
+    for(let item in items){
+        //console.log(item);
+        distNext = distance(items[item], place);
+        if(distNext < distLow){
+            distLow = distNext;
+            //console.log(item);
+            close = items[item];
+            console.log(item +" "+ distNext);
+        }
+    }
+    return close;
+  }
+  const snapping = 100;
+  
+  // then create layer
+//   var layer1 = new Konva.Layer({
+//     width:500
+//   });
+   var layer2 = new Konva.Layer({
+     width:500,
+    //offsetX:500
+   });
+  
+  // create our shape
+  var circle1 = new Konva.Circle({
+    x: stage.width() / 2,
+    y: stage.height() / 2,
+    radius: 70,
+    fill: 'red',
+    stroke: 'black',
+    strokeWidth: 4,
+    draggable: true,
+  });
+  var circle2 = new Konva.Circle({
+    x: stage.width() / 2 + 10,
+    y: stage.height() / 2,
+    radius: 70,
+    fill: 'blue',
+    stroke: 'black',
+    strokeWidth: 4,
+    draggable: true,
+  });
+  
+
+  
+//   var dot = new Konva.Circle({
+//     x: 100,
+//     y: 300,
+//     radius: 20,
+//     fill: 'blue',
+//     stroke: 'black',
+//     strokeWidth: 4,
+//     draggable: true,
+//   });
+
+//   var dot2 = new Konva.Circle({
+//     x: 200,
+//     y: 300,
+//     radius: 20,
+//     fill: 'red',
+//     stroke: 'black',
+//     strokeWidth: 4,
+//     draggable: true,
+//   });
+  
+//   var dot2 = new Konva.Circle({
+//     x: line1.absolutePosition(),
+//     y: line1.absolutePosition(),
+//     radius: 20,
+//     fill: 'blue',
+//     stroke: 'black',
+//     strokeWidth: 4,
+//     draggable: true,
+//   });
+  
+// New Pictures
+
+var imageObj = new Image();
+        imageObj.onload = function () {
+          var yoda = new Konva.Image({
+            x: 50,
+            y: 50,
+            image: imageObj,
+            width: 106,
+            height: 118,
+            draggable: true,
+            offsetX: 53,
+            offsetY: 59,
+          });
+          
+          // add the shape to the layer
+          layer1.add(yoda);
+          //layer1.draw();
+
+          yoda.on("dragend", function () {
+            let dot = closest(dots, yoda);
+            if (distance(dot, yoda) < snapping) {
+                yoda.position(dot.position());
+            }
+            
+          });
+        };
+        imageObj.src = 'https://cosineltg.com/wp-content/uploads/2023/02/PointSource-CubistAdjustable-01-495x400.jpg'
+
+var imageObj2 = new Image();
+        imageObj2.onload = function () {
+          var jedi = new Konva.Image({
+            x: 150,
+            y: 50,
+            image: imageObj2,
+            width: 106,
+            height: 118,
+            draggable: true,
+            offsetX: 53,
+            offsetY: 59,
+          });
+          // add the shape to the layer
+          layer1.add(jedi);
+          //layer1.draw();
+
+          jedi.on("dragend", function () {
+            let dot = closest(dots, jedi);
+            if (distance(dot, jedi) < snapping) {
+                jedi.position(dot.position());
+            }
+          });
+        };
+        imageObj2.src = 'https://cosineltg.com/wp-content/uploads/2022/02/CubistAdj_HTE9630A_BLK_1600x1160-1030x712.jpg'
+  
+ 
+  
+  // add the shape to the layer
+  layer1.add();
+  //layer1.add(circle2, circle1);
+  
+  // add the layer to the stage
+  //stage.add(layer1);
+  stage.add(layer2);
+  
+  // draw the image
+  
+  //layer1.draw();
+  
+  
+//   $("#lineSize").on("change", () => {
+//     line1.points() += $("#lineSize").val();
+//     layer1.draw();
+//     layer2.draw();
+//     $("#line").text(line1.newPoints()) 
+//   });
+  
+  //layer1.opacity = 0;
+  
 }
