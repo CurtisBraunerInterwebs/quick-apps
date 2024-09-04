@@ -12212,6 +12212,36 @@ $("#setKonvaPoints").on("click", function (){
   
 // New Pictures
 
+
+function newImg({name,imgX,imgY,imgImage,imgWidth,imgHeight,imgSrc}) {
+    let imgObj = $("<img>");
+    imgObj.on("load",  function(){
+        var kImg = new Konva.Image({
+            x: imgX,
+            y: imgY,
+            image: imgObj,
+            width: imgWidth,
+            height: imgHeight,
+            draggable: true,
+            offsetX: imgWidth/2,
+            offsetY: imgHeight/2,
+        });
+        layer1.add(kImg);
+        kImg.on("dragend",function () {
+            let dot = closest(dots, kImg);
+            if (distance(dot, kImg) < snapping) {
+                kImg.position(dot.position());
+            }
+            
+          });
+    })
+    imgObj.src = imgSrc;
+}
+
+newImg({"name"})
+
+
+
 var imageObj = new Image();
         imageObj.onload = function () {
           var yoda = new Konva.Image({
